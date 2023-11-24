@@ -54,6 +54,7 @@ module.exports = {
         },
         blue: {
           two: "hsl(var(--primary-foreground-2))",
+          three: "hsl(var(--primary-foreground-3))"
         }
       },
       fontFamily: {
@@ -85,6 +86,7 @@ module.exports = {
       base: '1rem',
       lg: '1.125rem',
       xl: '1.25rem',
+      '2xl': '1.5rem',
       '3xl': '1.75rem',
       '4xl': '2.1875rem',
       '5xl': '3.75rem',
