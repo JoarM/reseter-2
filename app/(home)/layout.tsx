@@ -35,7 +35,7 @@ export default function HomeLayout({
                         <h3 className="text-lg font-bold">Explore</h3>
                         <ul className="mt-1">
                             <li>
-                                <a href="/docs" className="text-blue-two underline-offset-4 hover:underline text-sm font-medium">Documentation</a>
+                                <Link href="/docs" className="text-blue-two underline-offset-4 hover:underline text-sm font-medium">Documentation</Link>
                             </li>
                         </ul>
                     </div>
@@ -44,7 +44,7 @@ export default function HomeLayout({
                     <h3 className="text-lg font-bold">About us</h3>
                         <ul className="mt-1">
                             <li>
-                                <a href="/gdpr" className="text-blue-two underline-offset-4 hover:underline text-sm font-medium">GDPR compliance</a>
+                                <Link href="/gdpr" className="text-blue-two underline-offset-4 hover:underline text-sm font-medium">GDPR compliance</Link>
                             </li>
                         </ul>
                     </div>
