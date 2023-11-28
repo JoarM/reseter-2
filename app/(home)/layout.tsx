@@ -20,6 +20,15 @@ export default function HomeLayout({
                             <Link href="/contact">Contact us</Link>
                         </Button>
                     </div>
+
+                    <div className="ml-auto">
+                        <Button asChild variant="outline" className="mr-2">
+                            <Link href="/login">Login</Link>
+                        </Button>
+                        <Button asChild>
+                            <Link href="/signup">Sign up</Link>
+                        </Button>
+                    </div>
                 </nav>
             </div>
 
