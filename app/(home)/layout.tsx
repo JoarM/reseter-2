@@ -34,7 +34,7 @@ export default function HomeLayout({
 
             {children}
 
-            <footer className="mt-12 border-t border-border bg-muted">
+            <footer className="mt-12 sticky top-full left-0 right-0 border-t border-border bg-muted">
                 <div className="mx-auto max-w-full w-[1024px] px-6 pt-8 pb-4 grid md:grid-cols-4 gap-5">
                     <div>
                         <h2 className="text-2xl font-bold">Rester</h2>

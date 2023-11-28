@@ -1,3 +1,4 @@
+import { signup } from "@/actions/user/signup";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
@@ -7,7 +8,7 @@ import Link from "next/link";
 export default function Signup() {
     return (
         <div className="px-4">
-            <form className="mx-auto sm:px-16 px-8 py-16 rounded-2xl border border-border max-w-lg mt-16">
+            <form action={signup} className="mx-auto sm:px-16 px-8 py-16 rounded-2xl border border-border max-w-lg mt-16">
                 <h1 className="font-bold text-2xl">Sign up</h1>
 
                 <Label className="mt-4 block" htmlFor="name">Display name</Label>

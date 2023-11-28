@@ -14,6 +14,13 @@ export const auth = lucia({
 
 	sessionCookie: {
 		expires: false
+	},
+
+	getUserAttributes: (data) => {
+		return {
+			displayname: data.displayname,
+			email: data.email,
+		}
 	}
 });
 
