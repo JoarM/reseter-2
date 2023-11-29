@@ -1,12 +1,16 @@
+import { logout } from "@/actions/user/logout"
 import { Button } from "@/components/ui/button"
 import ThemeSwitcher from "@/components/utils/theme-switcher"
+import { getUser } from "@/data/user"
 import Link from "next/link"
 
-export default function HomeLayout({
+export default async function HomeLayout({
     children,
   }: {
     children: React.ReactNode
   }) {
+    const user = await getUser();
+
     return (
         <>
             <div className="sticky top-0 border-b border-border bg-background/80 backdrop-blur-sm z-40">
@@ -21,13 +25,23 @@ export default function HomeLayout({
                         </Button>
                     </div>
 
-                    <div className="ml-auto">
-                        <Button asChild variant="outline" className="mr-2">
-                            <Link href="/login">Login</Link>
-                        </Button>
-                        <Button asChild>
-                            <Link href="/signup">Sign up</Link>
-                        </Button>
+                    <div className="ml-auto flex gap-2 items-center justify-center">
+                        {
+                            !user ? 
+                            <>
+                                <Button asChild variant="outline">
+                                    <Link href="/login">Login</Link>
+                                </Button>
+                                <Button asChild>
+                                    <Link href="/signup">Sign up</Link>
+                                </Button>
+                            </>
+                            :
+                            <>
+                                <span>{ user.displayname }</span>
+                                <form action=""><Button formAction={logout}>Logout</Button></form>
+                            </>
+                        }
                     </div>
                 </nav>
             </div>

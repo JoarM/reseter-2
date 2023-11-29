@@ -4,7 +4,6 @@ import { auth } from "@/server/lucia";
 import { insertUserSchema } from "@/server/schema";
 import * as context from "next/headers";
 import { redirect } from "next/navigation";
-import { headers } from "next/headers";
 
 export async function signup(formData: FormData) {
     const displayname = formData.get("name")?.valueOf();
@@ -27,7 +26,6 @@ export async function signup(formData: FormData) {
     if (email === undefined 
         || password === undefined
         || displayname === undefined
-        || email === undefined
     ) {
         return {
             success: false,

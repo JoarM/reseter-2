@@ -1,3 +1,4 @@
+import { login } from "@/actions/user/login";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
@@ -7,7 +8,7 @@ import Link from "next/link";
 export default function Login() {
     return (
         <div className="px-4">
-            <form className="mx-auto sm:px-16 px-8 py-28 rounded-2xl border border-border max-w-lg mt-16">
+            <form action={login} className="mx-auto sm:px-16 px-8 py-28 rounded-2xl border border-border max-w-lg mt-16">
                 <h1 className="font-bold text-2xl">Login</h1>
 
                 <Label className="mt-4 block" htmlFor="mail">Email</Label>
@@ -18,7 +19,7 @@ export default function Login() {
 
                 <div className="mt-4 flex gap-2 items-center">
                     <Checkbox id="keep-logged-in" name="keep-logged-in" />
-                    <Label htmlFor="keep-logged-in" className="font-light">Keep me loggedin</Label>
+                    <Label htmlFor="keep-logged-in" className="font-light">Keep me logged in</Label>
                 </div>
                 
                 <Button className="mt-6 w-full">Login</Button>
