@@ -3,9 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { redirectLoggedInUser } from "@/data/user";
 import Link from "next/link";
 
-export default function Login() {
+export default async function Login() {
+    await redirectLoggedInUser();
+
     return (
         <div className="px-4">
             <form action={login} className="mx-auto sm:px-16 px-8 py-28 rounded-2xl border border-border max-w-lg mt-16">
