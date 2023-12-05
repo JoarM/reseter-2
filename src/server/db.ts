@@ -8,4 +8,4 @@ export const poolConnection = mysql.createPool({
   password: process.env.db_password
 });
  
-const db = drizzle(poolConnection);
+export const db = drizzle(poolConnection);

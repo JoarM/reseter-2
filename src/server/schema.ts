@@ -1,4 +1,4 @@
-import { mysqlTable, bigint, varchar, unique } from "drizzle-orm/mysql-core";
+import { mysqlTable, bigint, varchar, unique, json } from "drizzle-orm/mysql-core";
 import { z } from "zod";
 
 export const user = mysqlTable("auth_user", {
@@ -18,18 +18,18 @@ export const insertUserSchema = z.object({
 	.min(1, { message: "You need to enter a displayname" })
 	.max(256, { message: "Displayname can't be more than 256 characters" }),
 	password: z.string()
-	.min(6, "Password needs to be atleast 6 characthers")
-	.max(64, "Password cant be more than 64 characthers")
-	.regex(/[A-Z]/, { message: "Password must include uppercase letter" })
-	.regex(/[a-z]/, { message: "Password must include lowercase letter" })
-	.regex(/[0-9]/, { message: "Password must include number" }),
+	.min(6, "Password needs to be atleast 6 characthers. ")
+	.max(64, "Password cant be more than 64 characthers. ")
+	.regex(/[A-Z]/, { message: "Password must include uppercase letter. " })
+	.regex(/[a-z]/, { message: "Password must include lowercase letter. " })
+	.regex(/[0-9]/, { message: "Password must include number. " }),
 });
 
 export const signinSchema = z.object({
 	email: z.string()
-	.min(1),
+	.email({ message: "Please enter a valid email" }),
 	password: z.string()
-	.min(1)
+	.min(1, { message: "You need to enter a password" })
 });
 
 export const key = mysqlTable("user_key", {
@@ -61,4 +61,59 @@ export const session = mysqlTable("user_session", {
 	idleExpires: bigint("idle_expires", {
 		mode: "number"
 	}).notNull()
+});
+
+export const contactSchema = z.object({
+	email: z.string()
+	.email({ message: "Please enter a valid email" }),
+	name: z.string()
+	.min(1, "Please enter your name")
+	.max(64, "Your name is to long"),
+	message: z.string()
+	.min(1, "Please enter a message")
+	.max(200, "Message cant be more than 200 characthers"),
+});
+
+export const contact = mysqlTable("contact", {
+	id: bigint("id", { mode: "number" })
+	.primaryKey()
+	.autoincrement(),
+	name: varchar("name", { length: 64 })
+	.notNull(),
+	email: varchar("email", { length: 64 })
+	.notNull(),
+	message: varchar("message", { length: 200 })
+	.notNull(),
+});
+
+export const project = mysqlTable("project", {
+	id: bigint("id", { mode: "number" })
+	.primaryKey()
+	.autoincrement(),
+	name: varchar("name", { length: 64 })
+	.notNull(),
+	description: varchar("description", { length: 150 }),
+	usage: json("usage")
+	.notNull(),
+	secret: varchar("secret", { length: 255 })
+	.notNull()
+});
+
+export const apikey = mysqlTable("apikey", {
+	key: varchar("key", { length: 255 })
+	.notNull(),
+	secret: varchar("secret", { length: 255 })
+	.references(() => project.secret, { onDelete: "cascade", onUpdate: "cascade" })
+	.notNull(),
+}, (t) => ({
+	unq: unique().on(t.key, t.secret),
+}));
+
+export const team = mysqlTable("team", {
+	id: bigint("id", { mode: "number" })
+	.primaryKey()
+	.autoincrement(),
+	name: varchar("name", { length: 64 })
+	.notNull(),
+	description: varchar("description", { length: 150 }),
 });
