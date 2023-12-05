@@ -2,13 +2,11 @@ import { mysqlTable, bigint, varchar, unique, json } from "drizzle-orm/mysql-cor
 import { z } from "zod";
 
 export const user = mysqlTable("auth_user", {
-	id: varchar("id", {
-		length: 256
-	}).primaryKey(),
-	email: varchar("email", { length: 128 }).unique(),
-	displayname: varchar("displayname", {
-		length: 256
-	}),
+	id: varchar("id", { length: 256 })
+	.primaryKey(),
+	email: varchar("email", { length: 128 })
+	.unique(),
+	displayname: varchar("displayname", { length: 256 }),
 });
 
 export const insertUserSchema = z.object({
@@ -102,12 +100,9 @@ export const project = mysqlTable("project", {
 export const apikey = mysqlTable("apikey", {
 	key: varchar("key", { length: 255 })
 	.notNull(),
-	secret: varchar("secret", { length: 255 })
-	.references(() => project.secret, { onDelete: "cascade", onUpdate: "cascade" })
-	.notNull(),
-}, (t) => ({
-	unq: unique().on(t.key, t.secret),
-}));
+	project_id: bigint("project_id", { mode: "number" })
+	.references(() => project.id),
+});
 
 export const team = mysqlTable("team", {
 	id: bigint("id", { mode: "number" })
@@ -116,4 +111,31 @@ export const team = mysqlTable("team", {
 	name: varchar("name", { length: 64 })
 	.notNull(),
 	description: varchar("description", { length: 150 }),
+});
+
+export const user_to_project = mysqlTable("user_to_project", {
+	user_id: varchar("user_id", { length: 256 })
+	.notNull()
+	.references(() => user.id),
+	project_id: bigint("project_id", { mode: "number" })
+	.notNull()
+	.references(() => project.id, { onDelete: "cascade" }),
+});
+
+export const user_to_team = mysqlTable("user_to_team", {
+	user_id: varchar("user_id", { length: 256 })
+	.notNull()
+	.references(() => user.id),
+	team_id: bigint("team_id", { mode: "number" })
+	.notNull()
+	.references(() => team.id, { onDelete: "cascade" }),
+});
+
+export const team_to_project = mysqlTable("team_to_project", {
+	team_id: bigint("team_id", { mode: "number" })
+	.notNull()
+	.references(() => team.id, { onDelete: "cascade" }),
+	project_id: bigint("project_id", { mode: "number" })
+	.notNull()
+	.references(() => project.id, { onDelete: "cascade" }),
 });

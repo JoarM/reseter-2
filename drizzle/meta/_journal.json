@@ -15,6 +15,97 @@
       "when": 1701679983955,
       "tag": "0001_noisy_khan",
       "breakpoints": false
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1701784701417,
+      "tag": "0002_elite_doorman",
+      "breakpoints": false
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1701785101141,
+      "tag": "0003_loud_fantastic_four",
+      "breakpoints": false
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1701785210219,
+      "tag": "0004_nappy_loners",
+      "breakpoints": false
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1701785226147,
+      "tag": "0005_sturdy_runaways",
+      "breakpoints": false
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1701785389294,
+      "tag": "0006_fixed_sabra",
+      "breakpoints": false
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1701785731374,
+      "tag": "0007_red_vargas",
+      "breakpoints": false
+    },
+    {
+      "idx": 8,
+      "version": "5",
+      "when": 1701786316014,
+      "tag": "0008_lowly_karma",
+      "breakpoints": false
+    },
+    {
+      "idx": 9,
+      "version": "5",
+      "when": 1701786357690,
+      "tag": "0009_watery_ravenous",
+      "breakpoints": false
+    },
+    {
+      "idx": 10,
+      "version": "5",
+      "when": 1701786421840,
+      "tag": "0010_legal_lake",
+      "breakpoints": false
+    },
+    {
+      "idx": 11,
+      "version": "5",
+      "when": 1701786507071,
+      "tag": "0011_blushing_drax",
+      "breakpoints": false
+    },
+    {
+      "idx": 12,
+      "version": "5",
+      "when": 1701786540236,
+      "tag": "0012_glamorous_tarantula",
+      "breakpoints": false
+    },
+    {
+      "idx": 13,
+      "version": "5",
+      "when": 1701786824386,
+      "tag": "0013_thin_surge",
+      "breakpoints": false
+    },
+    {
+      "idx": 14,
+      "version": "5",
+      "when": 1701786853757,
+      "tag": "0014_spicy_angel",
+      "breakpoints": false
     }
   ]
 }
