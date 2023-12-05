@@ -1,7 +1,9 @@
 import { logout } from "@/actions/user/logout"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import ThemeSwitcher from "@/components/utils/theme-switcher"
 import { getUser } from "@/data/user"
+import Image from "next/image"
 import Link from "next/link"
 
 export default async function HomeLayout({
@@ -38,8 +40,12 @@ export default async function HomeLayout({
                             </>
                             :
                             <>
-                                <span>{ user.displayname }</span>
-                                <form action=""><Button formAction={logout}>Logout</Button></form>
+                                <Button asChild><Link href="/dashboard">Dashboard</Link></Button>
+                                <form action=""><Button formAction={logout} variant="ghost">Logout</Button></form>
+                                <Avatar>
+                                    <AvatarImage src="/user-128.png" alt="" loading="eager" />
+                                    <AvatarFallback>{ user.displayname }</AvatarFallback>
+                                </Avatar>
                             </>
                         }
                     </div>
