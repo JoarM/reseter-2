@@ -5,7 +5,7 @@ import { insertUserSchema } from "@/server/schema";
 import * as context from "next/headers";
 import { redirect } from "next/navigation";
 
-export async function signup(formData: FormData) {
+export async function signup(prevState: any, formData: FormData) {
     const displayname = formData.get("name")?.valueOf();
     const email = formData.get("mail")?.valueOf();
     const password = formData.get("password")?.valueOf();
@@ -17,9 +17,9 @@ export async function signup(formData: FormData) {
     });
 
     if (!parse.success) {
+        const error = parse.error.flatten().fieldErrors;
         return {
-            success: false,
-            error: "I will fix message",
+            error
         }
     }
 
@@ -28,8 +28,7 @@ export async function signup(formData: FormData) {
         || displayname === undefined
     ) {
         return {
-            success: false,
-            error: "An unexpcted error occured",
+            message: "An unexpcted error occured",
         }
     }
 
@@ -52,17 +51,14 @@ export async function signup(formData: FormData) {
         const authRequest = auth.handleRequest("POST", context);
         authRequest.setSession(session);
     } catch (e: any) {
-        console.log(e);
         if (e.code === "ER_DUP_ENTRY") {
             return {
-                success: false,
-                error: "An account with this email already exists",
+                message: "An account with this email already exists",
             };
         }
 
         return {
-            success: false,
-            error: "An unknown error occurred",
+            message: "An unknown error occurred",
         };
     }
     redirect("/home");

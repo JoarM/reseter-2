@@ -6,7 +6,7 @@ import { LuciaError } from "lucia";
 import { redirect } from "next/navigation";
 import * as context from "next/headers";
 
-export async function login(formData: FormData) {
+export async function login(prevState: any, formData: FormData) {
     const email = formData.get("mail")?.valueOf();
     const password = formData.get("password")?.valueOf();
 
@@ -37,11 +37,11 @@ export async function login(formData: FormData) {
             (e.message === "AUTH_INVALID_KEY_ID" ||
             e.message === "AUTH_INVALID_PASSWORD")) {
             return {
-                error: "Incorrect email or password",
+                message: "Incorrect email or password",
             }
         }
         return {
-            error: "An unknown error occured",
+            message: "An unknown error occured",
         }
     }
     return redirect("/home");
