@@ -6,11 +6,7 @@ import { redirect } from "next/navigation";
 import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-export default async function DashboardLayout({
-    children,
-}: {
-    children: React.ReactNode,
-}) {
+export default async function DashboardLayout(props: {children: React.ReactNode, modal: React.ReactNode}) {
     if (!(await isLoggedIn())) {
         redirect("/login");
     }
@@ -42,7 +38,8 @@ export default async function DashboardLayout({
                 </nav>
             </div>
 
-            {children}
+            {props.children}
+            {props.modal}
         </>
     )
 } 
