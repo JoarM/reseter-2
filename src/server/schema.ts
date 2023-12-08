@@ -139,3 +139,11 @@ export const team_to_project = mysqlTable("team_to_project", {
 	.notNull()
 	.references(() => project.id, { onDelete: "cascade" }),
 });
+
+export const insertProjectOrTeamSchema = z.object({
+	name: z.string()
+	.min(1, "You need to enter a name")
+	.max(64, "Name can't be more than 64 characthers"),
+	description: z.string()
+	.max(150, "Description can't be more than 150 characthers"),
+});
