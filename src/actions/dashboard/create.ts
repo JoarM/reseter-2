@@ -6,8 +6,8 @@ import { db } from "@/server/db";
 import { auth } from "@/server/lucia";
 import { insertProjectOrTeamSchema, project, team, user_to_project, user_to_team } from "@/server/schema";
 import { randomUUID } from "crypto";
+import { revalidatePath } from "next/cache";
 import * as context from "next/headers";
-import { redirect } from "next/navigation";
 
 export async function create(prevState: any, formData: FormData) {
     if (!(await isLoggedIn())) {
@@ -57,7 +57,11 @@ export async function create(prevState: any, formData: FormData) {
                 message: "An unexpected error occured",
             }
         }
-        return redirect("/dashboard");
+        
+        revalidatePath("/dashboard");
+        return {
+            success: true,
+        }
     } else if (type === "team") {
         try {
             const newTeam = await db.insert(team)
@@ -76,7 +80,11 @@ export async function create(prevState: any, formData: FormData) {
                 message: "An unexpected error occured",
             }
         }
-        return redirect("/dashboard");
+        
+        revalidatePath("/dashboard");
+        return {
+            success: true,
+        }
     }
     return {
         message: "Please select a valid type."

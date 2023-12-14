@@ -5,19 +5,24 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { SubmitButton } from "@/components/utils/submit-button";
+import { useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
 import { useFormState } from "react-dom";
 
 export function CreateForm() {
     const [form, createAction] = useFormState(create, undefined);
     const [type, setType] = useState("project");
+    const router = useRouter();
+    function onSubmit() {
+        router.back();
+    }
 
     function radioChange(e: ChangeEvent<HTMLInputElement>) {
         setType(e.target.value);
     }
 
     return (
-        <form action={createAction} className="mx-auto max-w-sm w-full">
+        <form action={createAction} onSubmit={onSubmit} className="mx-auto max-w-sm w-full">
             <h2 className="font-medium text-lg">Create new project or team</h2>
 
             <Label className="block mt-4" htmlFor="name">Name</Label>
@@ -42,6 +47,11 @@ export function CreateForm() {
 
             <SubmitButton className="mt-6 w-full">Create</SubmitButton>
             {form?.message && <span className="text-sm font-medium text-destructive mt-2 block">{form.message}</span>}
+            {form?.success && 
+                <span className="text-sm font-medium text-green-600 mt-2 block">
+                    Success! Return to dashboard to access what you created.
+                </span>
+            }
         </form>
     )
 }
