@@ -1,21 +1,15 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Plus, Search } from "lucide-react";
-import Link from "next/link";
+import { ProjectsAndTeams } from "@/components/utils/projects-and-teams";
+import { getProjects } from "@/data/projects";
+import { getTeams } from "@/data/teams";
 
-export default function Dashboard() {
+export default async function Dashboard() {
+    const projects = await getProjects();
+    const teams = await getTeams();
+
     return (
-        <div className="w-[1052px] max-w-full mx-auto px-6 mt-12 flex gap-2">
-            <div className="relative w-full">
-                <Search className="absolute text-muted-foreground left-3 top-3" size={16} />
-                <Input role="search" className="pl-8" placeholder="Search..." />
-            </div>
-            <Button asChild variant="secondary">
-                <Link href="/dashboard/create">
-                    <Plus size={16} className="mr-2" />
-                    Create new
-                </Link>
-            </Button>
-        </div>
+        <ProjectsAndTeams 
+        projects={projects} 
+        teams={teams}
+        />
     )
 }
