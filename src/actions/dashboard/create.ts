@@ -1,23 +1,19 @@
 "use server";
 
-import { isLoggedIn } from "@/data/user";
+import { getUnsanitizedUser, isLoggedIn } from "@/data/user";
 import { randomUsage } from "@/lib/utils";
 import { db } from "@/server/db";
-import { auth } from "@/server/lucia";
 import { insertProjectOrTeamSchema, project, team, user_to_project, user_to_team } from "@/server/schema";
 import { randomUUID } from "crypto";
 import { revalidatePath } from "next/cache";
-import * as context from "next/headers";
 
 export async function create(prevState: any, formData: FormData) {
-    if (!(await isLoggedIn())) {
+    const user = await getUnsanitizedUser();
+    if (!user) {
         return {
             message: "Unauthenticated",
         }
     }
-
-    const authRequest = auth.handleRequest("GET", context);
-    const session = await authRequest.validate();
 
     const type = formData.get("type")?.valueOf();
     const name = formData.get("name")?.valueOf();
@@ -49,7 +45,7 @@ export async function create(prevState: any, formData: FormData) {
             
             await db.insert(user_to_project)
             .values({
-                user_id: session.user.userId,
+                user_id: user.userId,
                 project_id: newProject[0].insertId
             });
         } catch (e) {
@@ -72,7 +68,7 @@ export async function create(prevState: any, formData: FormData) {
             
             await db.insert(user_to_team)
             .values({
-                user_id: session.user.userId,
+                user_id: user.userId,
                 team_id: newTeam[0].insertId
             });
         } catch (e) {
