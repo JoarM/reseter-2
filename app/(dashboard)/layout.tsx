@@ -3,10 +3,13 @@ import { Button } from "@/components/ui/button";
 import { getUser, isLoggedIn } from "@/data/user";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-export default async function DashboardLayout(props: {children: React.ReactNode, modal: React.ReactNode}) {
+export default async function DashboardLayout({
+    children,
+}: {
+    children: React.ReactNode
+}) {
     if (!(await isLoggedIn())) {
         redirect("/login");
     }
@@ -38,10 +41,7 @@ export default async function DashboardLayout(props: {children: React.ReactNode,
                 </nav>
             </div>
 
-            <main className="w-[1070px] max-w-full mx-auto px-6 pb-12">
-                {props.children}
-            </main>
-            {props.modal}
+            {children}
         </>
     )
 } 
