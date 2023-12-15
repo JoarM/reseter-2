@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { getUser, isLoggedIn } from "@/data/user";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default async function DashboardLayout(props: {children: React.ReactNode, modal: React.ReactNode}) {
