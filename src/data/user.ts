@@ -15,6 +15,13 @@ export async function getUser() {
     }
 }
 
+export async function getUnsanitizedUser() {
+    const authRequest = auth.handleRequest("GET", context);
+    const session = await authRequest.validate();
+    
+    return session.user;
+}
+
 export async function isLoggedIn() {
     const authRequest = auth.handleRequest("GET", context);
     const session = await authRequest.validate();
