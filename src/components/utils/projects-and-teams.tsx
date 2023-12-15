@@ -52,7 +52,7 @@ export function ProjectsAndTeams({
                         if (project.name.toLowerCase().includes(search.toLowerCase())) {
                             return (
                                 <Link href={`/project/${project.id}`} key={project.id} className="group outline-none hover:scale-105 transition-transform ease-in">
-                                    <Card className="h-40 flex flex-col justify-between group-hover:border-foreground group-hover:bg-muted/25 group-focus:ring-2 ring-offset-2 ring-offset-background ring-foreground transition-colors">
+                                    <Card className="h-40 flex flex-col justify-between group-hover:border-foreground group-hover:bg-muted/25 group-focus-visible:ring-2 ring-offset-2 ring-offset-background ring-foreground transition-colors">
                                         <div>
                                             <CardHeader>
                                                 <CardTitle>{project.name}</CardTitle>
@@ -82,7 +82,7 @@ export function ProjectsAndTeams({
                         if (team.name.toLowerCase().includes(search.toLowerCase())) {
                             return (
                                 <Link href={`/team/${team.id}`} key={team.id} className="group outline-none hover:scale-105 transition-transform ease-in">
-                                <Card className="h-40 flex flex-col justify-between group-hover:border-foreground group-hover:bg-muted/25 group-focus:ring-2 ring-offset-2 ring-offset-background ring-foreground transition-colors">
+                                <Card className="h-40 flex flex-col justify-between group-hover:border-foreground group-hover:bg-muted/25 group-focus-visible:ring-2 ring-offset-2 ring-offset-background ring-foreground transition-colors">
                                         <div>
                                             <CardHeader>
                                                 <CardTitle>{team.name}</CardTitle>
