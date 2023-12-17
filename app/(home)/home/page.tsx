@@ -7,7 +7,7 @@ export default function Home() {
         <div className="w-[1024px] max-w-full px-6 mx-auto">
             <header className="grid place-items-center mt-44">
                 <h1 className="text-4xl lg:text-5xl font-bold text-blue-two text-center">Reset passwords with ease</h1>
-                <p className=" text-center md:px-20 text-base lg:text-xl ">We handle all the heavy lifting of resetting passwords so you can move fast with confidence. all while staying fully GDPR compliant</p>
+                <p className=" text-center md:px-20 text-base lg:text-xl mt-6">We handle all the heavy lifting of resetting passwords so you can move fast with confidence. all while staying fully GDPR compliant</p>
                 <div className=" grid gap-2 sm:grid-cols-2 mt-2">
                     <Button asChild variant="outline" className="w-72 max-w-full">
                         <Link href="/signup">Start now</Link>
