@@ -39,7 +39,7 @@ export async function create(prevState: any, formData: FormData) {
             .values({
                 name: name.toString(),
                 description: description.toString(),
-                usage: JSON.stringify(randomUsage()),
+                usage: randomUsage(),
                 secret: randomUUID(),
             });
             
