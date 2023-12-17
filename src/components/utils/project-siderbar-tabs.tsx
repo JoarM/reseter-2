@@ -4,7 +4,7 @@ import { Home, KeyRound } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation"
 
-export default function ProjectSidebarTabs({
+export function ProjectSidebarTabs({
     projectId,
 }: {
     projectId: string
