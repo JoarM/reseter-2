@@ -3,7 +3,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import ThemeSwitcher from "@/components/utils/theme-switcher"
 import { getUser } from "@/data/user"
-import Image from "next/image"
 import Link from "next/link"
 
 export default async function HomeLayout({
