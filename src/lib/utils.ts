@@ -6,7 +6,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function randomUsage() {
-    const sizeMultiplier = Math.floor(Math.random() * 52) + 1;
+    const sizeMultiplier = Math.floor(Math.random() * 220) + 1;
 
     let arr = [];
     for (let i = 0; i < 7; i++) {
@@ -46,3 +46,7 @@ export type ValueFormatter = {
 export type CurveType = "linear" | "natural" | "monotone" | "step";
 
 export const defaultValueFormatter: ValueFormatter = (value: number) => value.toString();
+
+export function getPriceMultiplier(requests: number) {
+    return 0.1904;
+}

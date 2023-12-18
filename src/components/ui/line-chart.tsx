@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import {
     CartesianGrid,
     Dot,
@@ -61,7 +61,6 @@ type FixedProps = {
     noDataText?: string;
     onValueChange?: (value: EventProps) => void;
     enableLegendSlider?: boolean;
-    tooltipLabelIndex?: string; 
     rotateLabelX?: {
       angle: number;
       verticalShift?: number;
@@ -84,7 +83,7 @@ const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>((props, ref) 
     data = [],
     categories = [],
     index,
-    valueFormatter = defaultValueFormatter,
+    valueFormatter,
     startEndOnly = false,
     showXAxis = true,
     showYAxis = true,
@@ -111,6 +110,7 @@ const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>((props, ref) 
   const [legendHeight, setLegendHeight] = useState(60);
   const [activeDot, setActiveDot] = useState<ActiveDot | undefined>(undefined);
   const [activeLegend, setActiveLegend] = useState<string | undefined>(undefined);
+  const [mounted, setMounted] = useState(false);
 
   const yAxisDomain = getYAxisDomain(autoMinValue, minValue, maxValue);
   const hasOnValueChange = !!onValueChange;
@@ -160,9 +160,11 @@ const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>((props, ref) 
     setActiveDot(undefined);
   }
 
+  useEffect(() => setMounted(true), []);
+
   return (
-    <div ref={ref} className={cn("w-full h-80", className)} {...other}>
-      <ResponsiveContainer className="h-full w-full">
+    <div ref={ref} className={cn("w-full h-72", `${!mounted && "hidden"}`, className)} {...other}>
+      <ResponsiveContainer className="w-full h-full">
         {data?.length ? (
           <ReChartsLineChart
             data={data}
@@ -218,13 +220,12 @@ const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>((props, ref) 
               className={cn(
                 "stroke-muted-foreground"
               )}
-              tickFormatter={valueFormatter}
               allowDecimals={allowDecimals}
             />
             <Tooltip
               wrapperStyle={{ outline: "none" }}
               isAnimationActive={true}
-              animationDuration={200}
+              animationDuration={150}
               cursor={{ stroke: "#d1d5db", strokeWidth: 1 }}
               content={
                 showTooltip ? (
@@ -232,8 +233,8 @@ const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>((props, ref) 
                     return (
                         <div className="py-2 w-44 border bg-background border-border/50 shadow-md rounded">
                             <div className="font-light text-muted-foreground border-b border-border/50 px-2 py-1">{payload?.at(0)?.payload.tooltip}</div>
-                            <div className="text-muted-foreground mt-2 px-2">Requests</div>
-                            <span className="text-primary mt-1 px-2">{payload?.at(0)?.value}</span>
+                            <div className="text-muted-foreground mt-2 px-2 capitalize">{categories[0]}</div>
+                            <span className="text-primary mt-1 px-2">{valueFormatter ? valueFormatter(payload?.at(0)?.value as number) : payload?.at(0)?.value}</span>
                         </div>
                     )
                   }
