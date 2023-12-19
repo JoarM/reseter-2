@@ -23,7 +23,7 @@ export default async function ProjectLayout(props: {
             />
 
             <div className="absolute inset-0 left-14 lg:left-64 top-20">
-                <main className="mx-auto max-w-3xl w-full px-6 pb-12">
+                <main className="mx-auto max-w-3xl w-full px-6 pb-12 pt-14">
                     {props.children}
                 </main>
             </div>

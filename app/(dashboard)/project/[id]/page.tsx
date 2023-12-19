@@ -1,5 +1,4 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import LineChart from "@/components/ui/line-chart";
 import { CostChart } from "@/components/utils/cost-chart";
 import { UsageChart } from "@/components/utils/usage-chart";
 import { getProject } from "@/data/projects"
@@ -69,7 +68,7 @@ export default async function Project({
 
     return (
         <>
-            <Card className="mt-14">
+            <Card>
                 <CardHeader>
                     <CardTitle>Usage</CardTitle>
                 </CardHeader>
@@ -79,6 +78,7 @@ export default async function Project({
                     />
 
                     <noscript>
+                        <span className="text-sm font-medium">Enable Javascript to see chart</span>
                         <ul className="divide-y divide-border/50">
                             {usage.map((obj) => 
                                 <li key={obj.date} className="py-2">
@@ -102,6 +102,7 @@ export default async function Project({
                     />
 
                     <noscript>
+                        <span className="text-sm font-medium">Enable Javascript to see chart</span>
                         <ul className="divide-y divide-border/50">
                             {price.map((obj) => 
                                 <li key={obj.date} className="py-2">
