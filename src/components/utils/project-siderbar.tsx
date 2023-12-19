@@ -22,7 +22,7 @@ export function ProjectSidebar({
                 <h1 className="text-lg font-bold">{projectName}</h1>
                 <Link 
                 href={`/project/${projectId}/edit`} 
-                className="ml-2 group/settings focus-visible:ring-2 ring-offset-2 ring-ring ring-offset-muted outline-none rounded">
+                className="ml-2 w-10 h-10 inline-flex justify-center items-center group/settings focus-visible:ring-2 ring-offset-2 ring-ring ring-offset-muted outline-none rounded">
                     <Settings size={20} className="group-hover/settings:rotate-180 transition-transform ease-in duration-300"/>
                 </Link>
             </div>
@@ -30,25 +30,29 @@ export function ProjectSidebar({
                 <li>
                     <Link 
                     href={`/project/${projectId}`} 
-                    className={"flex items-center px-4 h-10 rounded-full text-sm font-medium hover:bg-secondary/30 transition-colors focus-visible:ring-2 ring-ring outline-none" + ` ${pathname === `/project/${projectId}` && "bg-secondary/30"}`}
+                    className={"ml-auto flex items-center justify-center w-10 h-10 text-sm rounded-lg font-medium hover:bg-secondary/30 transition-colors focus-visible:ring-2 ring-ring outline-none " +
+                    "lg:px-4 lg:rounded-full lg:justify-start lg:w-auto group-aria-expanded:px-4 group-aria-expanded:rounded-full group-aria-expanded:justify-start group-aria-expanded:w-auto "
+                    + ` ${pathname === `/project/${projectId}` && "bg-secondary/30"}`}
                     >
                         <Home 
                         size={16}
-                        className="mr-2"
+                        className="lg:mr-2 group-aria-expanded:mr-2"
                         />
-                        Home
+                        <span className="hidden lg:inline group-aria-expanded:inline">Home</span>
                     </Link>
                 </li>
                 <li>
                     <Link 
                     href={`/project/${projectId}/api-keys`}
-                    className={"flex items-center px-4 h-10 rounded-full text-sm font-medium hover:bg-secondary/30 transition-colors focus-visible:ring-2 ring-ring outline-none" + ` ${pathname === `/project/${projectId}/api-keys` && "bg-secondary/30"}`}
+                    className={"ml-auto flex items-center justify-center w-10 h-10 text-sm rounded-lg font-medium hover:bg-secondary/30 transition-colors focus-visible:ring-2 ring-ring outline-none " +
+                    "lg:px-4 lg:rounded-full lg:justify-start lg:w-auto group-aria-expanded:px-4 group-aria-expanded:rounded-full group-aria-expanded:justify-start group-aria-expanded:w-auto " 
+                    + ` ${pathname === `/project/${projectId}/api-keys` && "bg-secondary/30"}`}
                     >
                         <KeyRound
                         size={16}
-                        className="mr-2"
+                        className="lg:mr-2 group-aria-expanded:mr-2"
                         />
-                        Api keys
+                        <span className="hidden lg:inline group-aria-expanded:inline">Api keys</span>
                     </Link>
                 </li>
             </ul>
