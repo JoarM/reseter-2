@@ -160,10 +160,8 @@ const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>((props, ref) 
     setActiveDot(undefined);
   }
 
-  useEffect(() => setMounted(true), []);
-
   return (
-    <div ref={ref} className={cn("w-full h-72", `${!mounted && "hidden"}`, className)} {...other}>
+    <div ref={ref} className={cn("w-full h-72", className)} {...other}>
       <ResponsiveContainer className="w-full h-full">
         {data?.length ? (
           <ReChartsLineChart
