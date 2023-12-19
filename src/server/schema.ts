@@ -100,6 +100,7 @@ export const project = mysqlTable("project", {
 export const apikey = mysqlTable("apikey", {
 	key: varchar("key", { length: 255 })
 	.notNull(),
+	name: varchar("name", { length: 64 }),
 	project_id: bigint("project_id", { mode: "number" })
 	.references(() => project.id),
 });
