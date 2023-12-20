@@ -27,20 +27,20 @@ export async function getProjects() {
     return projects;
 }
 
-export async function getProject(id: string) {
+export async function getProject(projectId: string) {
     const user = await getUnsanitizedUser();
     if (!user) return;
 
-    const intId = Number(id);
+    const id = Number(projectId);
 
     const project = await db.select()
     .from(projectDb)
     .where(
         and(
-            eq(projectDb.id, intId), 
+            eq(projectDb.id, id), 
             or(
-                sql`${intId} IN (SELECT ${user_to_project.project_id} FROM ${user_to_project} WHERE ${user_to_project.user_id} = ${user.userId})`,
-                sql`${intId} IN (
+                sql`${id} IN (SELECT ${user_to_project.project_id} FROM ${user_to_project} WHERE ${user_to_project.user_id} = ${user.userId})`,
+                sql`${id} IN (
                     SELECT ${team_to_project.project_id} FROM ${team_to_project} WHERE ${team_to_project.team_id} IN (
                         SELECT ${user_to_team.team_id} FROM ${user_to_team} WHERE ${user_to_team.user_id} = ${user.userId}
                     )
