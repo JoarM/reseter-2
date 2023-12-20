@@ -68,7 +68,7 @@ export default async function Project({
 
     return (
         <>
-            <Card>
+            <Card className="shadow-md">
                 <CardHeader>
                     <CardTitle>Usage</CardTitle>
                 </CardHeader>
@@ -91,7 +91,7 @@ export default async function Project({
                 </CardContent>
             </Card>
 
-            <Card className="mt-6">
+            <Card className="mt-6 shadow-md">
                 <CardHeader className="flex flex-row justify-between items-center">
                     <CardTitle>Cost</CardTitle>
                     <span className="font-medium text-lg text-foreground">{priceFormatter.format(sum)}</span>
