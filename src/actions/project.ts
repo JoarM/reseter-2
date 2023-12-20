@@ -2,7 +2,8 @@
 
 import { getUnsanitizedUser } from "@/data/user";
 import { db } from "@/server/db";
-import { insertProjectOrTeamSchema, project, team_to_project, user_to_project, user_to_team } from "@/server/schema";
+import { apikey, insertApikeySchema, insertProjectOrTeamSchema, project, team_to_project, user_to_project, user_to_team } from "@/server/schema";
+import { randomUUID } from "crypto";
 import { and, eq, or, sql } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
@@ -87,4 +88,34 @@ export async function deleteProject(prevState: any, formData: FormData) {
         }
     }
     return redirect("/dashboard");
+}
+
+export async function createApikey(prevState: any, formData: FormData) {
+    const user = await getUnsanitizedUser();
+    if (!user) return;
+
+    const id = Number(formData.get("id")?.valueOf());
+    if (isNaN(id)) return;
+
+    const name = formData.get("name")?.valueOf();
+
+    const parse = await insertApikeySchema.safeParseAsync(name);
+    if (!parse.success) {
+        const error = parse.error.flatten().fieldErrors;
+        return {
+            error
+        }
+    }
+    if (name === undefined) return;
+
+    try {
+        await db.insert(apikey)
+        .values({
+            name: name.toString(),
+            key: randomUUID(),
+            project_id: id,
+        });
+    } catch (e) {
+
+    }
 }

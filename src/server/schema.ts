@@ -105,6 +105,8 @@ export const apikey = mysqlTable("apikey", {
 	.references(() => project.id),
 });
 
+export const insertApikeySchema = z.string().min(1, "An api key name is requierd").max(64, "Api key names cant be more than 64 characthers long");
+
 export const team = mysqlTable("team", {
 	id: bigint("id", { mode: "number" })
 	.primaryKey()

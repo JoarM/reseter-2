@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { getApiKeys } from "@/data/projects"
 import { Plus } from "lucide-react";
+import Link from "next/link";
 
 export default async function ApiKeys({ 
     params
@@ -15,12 +16,14 @@ export default async function ApiKeys({
         <>
             <div className="px-2 h-16 flex items-center justify-between">
                 <h1 className="text-lg font-medium">Api keys</h1>
-                <Button>
-                    <Plus
-                    className="mr-2"
-                    size={16}
-                    />
-                    New api key
+                <Button asChild>
+                    <Link href={`/project/${params.id}/api-keys/create`}>
+                        <Plus
+                        className="mr-2"
+                        size={16}
+                        />
+                        New api key
+                    </Link>
                 </Button>
             </div>
 

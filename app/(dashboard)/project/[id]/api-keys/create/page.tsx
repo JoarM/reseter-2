@@ -1,5 +1,6 @@
 import { BackButton } from "@/components/ui/back-button";
 import { EditProjectForm } from "@/components/forms/edit-project-form";
+import { CreateApikeyForm } from "@/components/forms/create-apikey-form";
 
 export default function CreateApikey({
     params
@@ -14,8 +15,8 @@ export default function CreateApikey({
             fallback="/dashboard"
             />
 
-            <div className="mt-16">
-                <EditProjectForm 
+            <div className="mt-24">
+                <CreateApikeyForm
                 projectId={params.id}
                 />
             </div>
