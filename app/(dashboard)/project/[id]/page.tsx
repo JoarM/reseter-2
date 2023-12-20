@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { CostChart } from "@/components/utils/cost-chart";
-import { UsageChart } from "@/components/utils/usage-chart";
+import { CostChart } from "@/components/client/cost-chart";
+import { UsageChart } from "@/components/client/usage-chart";
 import { getProject } from "@/data/projects"
 import { getPriceMultiplier } from "@/lib/utils";
 import { notFound } from "next/navigation";

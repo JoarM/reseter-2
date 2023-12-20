@@ -1,4 +1,4 @@
-import { ProjectSidebar } from "@/components/utils/project-siderbar";
+import { ProjectSidebar } from "@/components/client/project-siderbar";
 import { getProject } from "@/data/projects";
 import { notFound } from "next/navigation";
 

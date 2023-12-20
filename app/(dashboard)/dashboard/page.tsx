@@ -1,4 +1,4 @@
-import { ProjectsAndTeams } from "@/components/utils/projects-and-teams";
+import { ProjectsAndTeams } from "@/components/client/projects-and-teams";
 import { getProjects } from "@/data/projects";
 import { getTeams } from "@/data/teams";
 
