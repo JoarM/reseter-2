@@ -4,7 +4,7 @@ import { Save, Trash2 } from "lucide-react";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
-import { SubmitButton } from "./submit-button";
+import { SubmitButton } from "../ui/submit-button";
 import { useFormState } from "react-dom";
 import { deleteProject, editProject } from "@/actions/project";
 import { useRouter } from "next/navigation";

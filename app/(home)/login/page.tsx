@@ -1,4 +1,4 @@
-import LoginForm from "@/components/utils/login-form";
+import LoginForm from "@/components/forms/login-form";
 import { redirectLoggedInUser } from "@/data/user";
 
 export default async function Login() {

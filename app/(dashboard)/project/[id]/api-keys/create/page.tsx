@@ -1,7 +1,7 @@
 import { BackButton } from "@/components/ui/back-button";
 import { EditProjectForm } from "@/components/forms/edit-project-form";
 
-export default function EditProject({
+export default function CreateApikey({
     params
 }: {
     params: {

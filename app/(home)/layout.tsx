@@ -1,7 +1,7 @@
 import { logout } from "@/actions/user/logout"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
-import ThemeSwitcher from "@/components/utils/theme-switcher"
+import ThemeSwitcher from "@/components/ui/theme-switcher"
 import { getUser } from "@/data/user"
 import Link from "next/link"
 

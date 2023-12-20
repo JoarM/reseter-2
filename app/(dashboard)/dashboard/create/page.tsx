@@ -1,5 +1,5 @@
-import { BackButton } from "@/components/utils/back-button";
-import { CreateForm } from "@/components/utils/create-form";
+import { BackButton } from "@/components/ui/back-button";
+import { CreateForm } from "@/components/forms/create-form";
 
 export default function create() {
     return (

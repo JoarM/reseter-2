@@ -2,7 +2,7 @@
 
 import { Loader2 } from "lucide-react";
 import { useFormStatus } from "react-dom";
-import { Button, ButtonProps } from "../ui/button";
+import { Button, ButtonProps } from "./button";
 
 export function SubmitButton({children, ...props} : ButtonProps) {
     const { pending } = useFormStatus();

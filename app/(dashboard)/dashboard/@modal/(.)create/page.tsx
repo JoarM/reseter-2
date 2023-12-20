@@ -1,5 +1,5 @@
-import { CreateForm } from "@/components/utils/create-form";
-import Modal from "@/components/utils/modal";
+import { CreateForm } from "@/components/forms/create-form";
+import Modal from "@/components/ui/modal";
 
 export default function CreateModal() {
     return (

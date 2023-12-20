@@ -4,7 +4,7 @@ import { create } from "@/actions/dashboard/create";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { SubmitButton } from "@/components/utils/submit-button";
+import { SubmitButton } from "@/components/ui/submit-button";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
 import { useFormState } from "react-dom";

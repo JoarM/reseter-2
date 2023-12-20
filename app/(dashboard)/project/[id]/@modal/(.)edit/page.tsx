@@ -1,5 +1,5 @@
-import { EditProjectForm } from "@/components/utils/edit-project-form";
-import Modal from "@/components/utils/modal";
+import { EditProjectForm } from "@/components/forms/edit-project-form";
+import Modal from "@/components/ui/modal";
 
 export default function EditModal({
     params
