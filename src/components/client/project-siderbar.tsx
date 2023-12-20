@@ -47,7 +47,7 @@ export function ProjectSidebar({
                         href={`/project/${projectId}/api-keys`}
                         className={"ml-auto flex items-center justify-center w-10 h-10 text-sm rounded-lg font-medium hover:bg-secondary/30 transition-colors focus-visible:ring-2 ring-ring outline-none " +
                         "lg:px-4 lg:rounded-full lg:justify-start lg:w-auto group-aria-expanded:px-4 group-aria-expanded:rounded-full group-aria-expanded:justify-start group-aria-expanded:w-auto " 
-                        + ` ${pathname === `/project/${projectId}/api-keys` && "bg-secondary/30"}`}
+                        + ` ${(pathname === `/project/${projectId}/api-keys` || pathname === `/project/${projectId}/api-keys/create`) && "bg-secondary/30"}`}
                         >
                             <KeyRound
                             size={16}

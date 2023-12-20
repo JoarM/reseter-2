@@ -8,6 +8,7 @@ import { SubmitButton } from "@/components/ui/submit-button";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
 import { useFormState } from "react-dom";
+import { Plus } from "lucide-react";
 
 export function CreateForm() {
     const [form, createAction] = useFormState(create, undefined);
@@ -45,7 +46,13 @@ export function CreateForm() {
                 </div>
             </div>
 
-            <SubmitButton className="mt-6 w-full">Create</SubmitButton>
+            <SubmitButton className="mt-6 w-full">
+                <Plus
+                className="mr-2"
+                size={16}
+                />
+                Create
+            </SubmitButton>
             {form?.message && <span className="text-sm font-medium text-destructive mt-2 block">{form.message}</span>}
             {form?.success && 
                 <span className="text-sm font-medium text-green-600 mt-2 block">
