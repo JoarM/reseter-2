@@ -101,21 +101,51 @@ export async function createApikey(prevState: any, formData: FormData) {
 
     const parse = await insertApikeySchema.safeParseAsync(name);
     if (!parse.success) {
-        const error = parse.error.flatten().fieldErrors;
+        const error = parse.error.errors[0].message;
         return {
-            error
+            error: {
+                name: error
+            }
         }
     }
     if (name === undefined) return;
+    const key = randomUUID();
 
     try {
+        const canEdit = await db.select()
+        .from(project)
+        .where(
+            and(
+                eq(project.id, id), 
+                or(
+                    sql`${id} IN (SELECT ${user_to_project.project_id} FROM ${user_to_project} WHERE ${user_to_project.user_id} = ${user.userId})`,
+                    sql`${id} IN (
+                        SELECT ${team_to_project.project_id} FROM ${team_to_project} WHERE ${team_to_project.team_id} IN (
+                            SELECT ${user_to_team.team_id} FROM ${user_to_team} WHERE ${user_to_team.user_id} = ${user.userId}
+                        )
+                    )`
+                )
+            )
+        );
+
+        if (!canEdit.at(0)) return {
+            message: "U dont have permision to add api keys to this project",
+        }
+
         await db.insert(apikey)
         .values({
             name: name.toString(),
-            key: randomUUID(),
+            key: key,
             project_id: id,
         });
     } catch (e) {
+        return {
+            message: "An unexpexted occured"
+        }
+    }
 
+    revalidatePath(`/project/${id}/api-keys`);
+    return {
+        key: key,
     }
 }
