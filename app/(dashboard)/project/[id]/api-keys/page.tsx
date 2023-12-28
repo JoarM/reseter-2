@@ -31,7 +31,7 @@ export default async function ApiKeys({
                 {apikeys && apikeys.length > 0 ? 
                     <>
                         {apikeys.map(({name, key}) => 
-                            <li className="px-2 h-16 flex items-center justify-between border-b border-t border-border" key={key}>
+                            <li className="px-2 h-16 flex items-center justify-between border-b first:border-t border-border" key={key}>
                                 <span className="font-medium text-base">{name}</span>
                                 <span>•••••••••••••••</span>
                             </li>
