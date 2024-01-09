@@ -1,3 +1,5 @@
+//TODO create composite keys
+
 import { mysqlTable, bigint, varchar, unique, json } from "drizzle-orm/mysql-core";
 import { z } from "zod";
 
