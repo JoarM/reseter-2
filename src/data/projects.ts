@@ -32,9 +32,7 @@ export async function getProject(projectId: string) {
     if (!user) return;
 
     const id = Number(projectId);
-    if (isNaN(id)) return {
-        error: "Id is not a number"
-    }
+    if (isNaN(id)) return
 
     const project = await db.select()
     .from(projectDb)
