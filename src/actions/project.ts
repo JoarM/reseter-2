@@ -149,3 +149,38 @@ export async function createApikey(prevState: any, formData: FormData) {
         key: key,
     }
 }
+
+export async function deleteApikey(formData: FormData) {
+    const user = await getUnsanitizedUser();
+    if (!user) return;
+
+    const id = Number(formData.get("projectId")?.valueOf());
+    if (isNaN(id)) return;
+
+    const key = formData.get("key")?.valueOf();
+    if (!key) return;
+
+    try {
+        await db.delete(apikey).where(
+            and(
+                and(
+                    eq(apikey.key, key.toString()),
+                    eq(apikey.project_id, id)
+                ), 
+                or(
+                    sql`${id} IN (SELECT ${user_to_project.project_id} FROM ${user_to_project} WHERE ${user_to_project.user_id} = ${user.userId})`,
+                    sql`${id} IN (
+                        SELECT ${team_to_project.project_id} FROM ${team_to_project} WHERE ${team_to_project.team_id} IN (
+                            SELECT ${user_to_team.team_id} FROM ${user_to_team} WHERE ${user_to_team.user_id} = ${user.userId}
+                        )
+                    )`
+                )
+            )
+        );
+    } catch (e) {
+        return {
+            message: "An unexpected error occured please try again"
+        }
+    }
+    return revalidatePath(`/project/${id}/api-keys`);
+}
