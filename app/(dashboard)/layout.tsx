@@ -21,7 +21,7 @@ export default async function DashboardLayout({
             <div className="sticky top-0 border-b border-border bg-muted z-40">
                 <nav className="mx-auto max-w-full w-[1440px] px-8 h-20 flex items-center">
                     <div className="flex items-center">
-                        <Link href="/home" className="text-3xl font-bold tracking-tight mr-8">Rester</Link>
+                        <Link href="/home" className="text-3xl font-bold tracking-tight mr-8">Reseter</Link>
                         <Button asChild variant="ghost" className="mr-2">
                             <Link href="/docs">Docs</Link>
                         </Button>
