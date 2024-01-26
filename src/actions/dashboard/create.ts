@@ -1,11 +1,12 @@
 "use server";
 
-import { getUnsanitizedUser, isLoggedIn } from "@/data/user";
+import { getUnsanitizedUser } from "@/data/user";
 import { randomUsage } from "@/lib/utils";
 import { db } from "@/server/db";
 import { insertProjectOrTeamSchema, project, team, user_to_project, user_to_team } from "@/server/schema";
 import { randomUUID } from "crypto";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export async function create(prevState: any, formData: FormData) {
     const user = await getUnsanitizedUser();
@@ -55,6 +56,7 @@ export async function create(prevState: any, formData: FormData) {
         }
         
         revalidatePath("/dashboard");
+        redirect("/dashboard");
         return {
             success: true,
         }
@@ -78,6 +80,7 @@ export async function create(prevState: any, formData: FormData) {
         }
         
         revalidatePath("/dashboard");
+        redirect("/dashboard");
         return {
             success: true,
         }

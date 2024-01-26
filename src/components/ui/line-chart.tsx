@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useState } from "react";
 import {
     CartesianGrid,
     Dot,
@@ -193,8 +193,6 @@ const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>((props, ref) 
               interval="preserveStartEnd"
               tick={{ transform: "translate(0, 6)" }}
               ticks={startEndOnly ? [data[0][index], data[data.length - 1][index]] : undefined}
-              fill=""
-              stroke=""
               className={cn(
                 "text-muted-foreground"
               )}
@@ -204,6 +202,7 @@ const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>((props, ref) 
               angle={rotateLabelX?.angle}
               dy={rotateLabelX?.verticalShift}
               height={rotateLabelX?.xAxisHeight}
+              stroke="currentColor"
             />
             <YAxis
               width={yAxisWidth}
@@ -213,10 +212,9 @@ const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>((props, ref) 
               type="number"
               domain={yAxisDomain as AxisDomain}
               tick={{ transform: "translate(-3, 0)" }}
-              fill=""
-              stroke=""
+              stroke="currentColor"
               className={cn(
-                "stroke-muted-foreground"
+                "text-muted-foreground"
               )}
               allowDecimals={allowDecimals}
             />

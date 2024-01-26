@@ -4,6 +4,7 @@ import { db } from "@/server/db";
 import { apikey, project as projectDb, team_to_project, user_to_project, user_to_team } from "@/server/schema";
 import { and, eq, or, sql } from "drizzle-orm";
 import { getUnsanitizedUser } from "./user";
+import { redirect } from "next/navigation";
 
 export async function getProjects() {
     const user = await getUnsanitizedUser();
@@ -49,6 +50,9 @@ export async function getProject(projectId: string) {
             )
         )
     );
+
+    if (!project[0]) return redirect("/dashboard");
+
     return project[0];
 }
 

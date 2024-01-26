@@ -104,7 +104,7 @@ export const apikey = mysqlTable("apikey", {
 	.notNull(),
 	name: varchar("name", { length: 64 }),
 	project_id: bigint("project_id", { mode: "number" })
-	.references(() => project.id),
+	.references(() => project.id, { onDelete: "cascade" }),
 });
 
 export const insertApikeySchema = z.string().min(1, "An api key name is requierd").max(64, "Api key names cant be more than 64 characthers long");
@@ -121,7 +121,7 @@ export const team = mysqlTable("team", {
 export const user_to_project = mysqlTable("user_to_project", {
 	user_id: varchar("user_id", { length: 256 })
 	.notNull()
-	.references(() => user.id),
+	.references(() => user.id, { onDelete: "cascade" }),
 	project_id: bigint("project_id", { mode: "number" })
 	.notNull()
 	.references(() => project.id, { onDelete: "cascade" }),
@@ -130,7 +130,7 @@ export const user_to_project = mysqlTable("user_to_project", {
 export const user_to_team = mysqlTable("user_to_team", {
 	user_id: varchar("user_id", { length: 256 })
 	.notNull()
-	.references(() => user.id),
+	.references(() => user.id, { onDelete: "cascade" }),
 	team_id: bigint("team_id", { mode: "number" })
 	.notNull()
 	.references(() => team.id, { onDelete: "cascade" }),
@@ -143,6 +143,15 @@ export const team_to_project = mysqlTable("team_to_project", {
 	project_id: bigint("project_id", { mode: "number" })
 	.notNull()
 	.references(() => project.id, { onDelete: "cascade" }),
+});
+
+export const invites = mysqlTable("invites", {
+	user_id: varchar("user_id", { length: 256 })
+	.notNull()
+	.references(() => user.id, { onDelete: "cascade" }),
+	team_id: bigint("team_id", { mode: "number" })
+	.notNull()
+	.references(() => team.id, { onDelete: "cascade" }),
 });
 
 export const insertProjectOrTeamSchema = z.object({

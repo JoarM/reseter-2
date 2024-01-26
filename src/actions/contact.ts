@@ -30,6 +30,8 @@ export async function contact(prevState: any, formData: FormData) {
         }
     }
 
+    if (!name || !email || !message) return;
+
     try {
         await db.insert(dbContact).values({
             name: name?.toString(),

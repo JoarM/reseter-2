@@ -87,6 +87,7 @@ export async function deleteProject(prevState: any, formData: FormData) {
             message: "An unexpected error occured please try again"
         }
     }
+    revalidatePath("/dashboard");
     return redirect("/dashboard");
 }
 
@@ -144,10 +145,8 @@ export async function createApikey(prevState: any, formData: FormData) {
         }
     }
 
-    revalidatePath(`/project/${id}/api-keys`);
-    return {
-        key: key,
-    }
+    revalidatePath(`/project-${id}/api-keys`);
+    return redirect(`/project/${id}/api-keys`);
 }
 
 export async function deleteApikey(formData: FormData) {
@@ -182,5 +181,5 @@ export async function deleteApikey(formData: FormData) {
             message: "An unexpected error occured please try again"
         }
     }
-    return revalidatePath(`/project/${id}/api-keys`);
+    return revalidatePath(`/project-${id}/api-keys`);
 }

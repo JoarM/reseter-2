@@ -61,5 +61,5 @@ export async function signup(prevState: any, formData: FormData) {
             message: "An unknown error occurred",
         };
     }
-    redirect("/home");
+    redirect("/dashboard");
 }

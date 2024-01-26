@@ -1,3 +1,7 @@
+export const dynamic = 'force-dynamic';
+export const fetchCache = 'force-no-store';
+export const dynamicParams = true;
+
 import { deleteApikey } from "@/actions/project";
 import { CopyButton } from "@/components/client/copy-button";
 import { Button } from "@/components/ui/button";
@@ -19,7 +23,7 @@ export default async function ApiKeys({
             <div className="px-2 h-16 flex items-center justify-between">
                 <h1 className="text-lg font-medium">Api keys</h1>
                 <Button asChild>
-                    <Link href={`/project/${params.id}/api-keys/create`}>
+                    <Link href={`/project/${params.id}/create/api-key`}>
                         <Plus
                         className="mr-2"
                         size={16}

@@ -1,4 +1,5 @@
 import { logout } from "@/actions/user/logout"
+import { PhoneMenu } from "@/components/client/PhoneMenu"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import ThemeSwitcher from "@/components/ui/theme-switcher"
@@ -18,15 +19,18 @@ export default async function HomeLayout({
                 <nav className="mx-auto max-w-full w-[1440px] px-8 h-20 flex items-center">
                     <div className="flex items-center">
                         <Link href="/home" className="text-3xl font-bold tracking-tight mr-8">Reseter</Link>
-                        <Button asChild variant="ghost" className="mr-2">
-                            <Link href="/docs">Docs</Link>
-                        </Button>
-                        <Button asChild variant="ghost">
-                            <Link href="/contact">Contact us</Link>
-                        </Button>
+                        <div className="md:flex items-center hidden">
+                            <Button asChild variant="ghost" className="mr-2">
+                                <Link href="/docs">Docs</Link>
+                            </Button>
+                            <Button asChild variant="ghost">
+                                <Link href="/contact">Contact us</Link>
+                            </Button>
+                        </div>
+                        
                     </div>
 
-                    <div className="ml-auto flex gap-2 items-center justify-center">
+                    <div className="ml-auto sm:flex gap-2 items-center justify-center hidden">
                         {
                             !user ? 
                             <>
@@ -47,6 +51,11 @@ export default async function HomeLayout({
                                 </Avatar>
                             </>
                         }
+                    </div>
+                    <div className="sm:hidden ml-auto">
+                        <PhoneMenu 
+                        user={user}
+                        />
                     </div>
                 </nav>
             </div>

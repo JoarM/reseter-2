@@ -44,5 +44,5 @@ export async function login(prevState: any, formData: FormData) {
             message: "An unknown error occured",
         }
     }
-    return redirect("/home");
+    return redirect("/dashboard");
 }

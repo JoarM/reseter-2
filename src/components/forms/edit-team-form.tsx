@@ -6,20 +6,20 @@ import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
 import { SubmitButton } from "../ui/submit-button";
 import { useFormState } from "react-dom";
-import { deleteProject, editProject } from "@/actions/project";
+import { deleteTeam, editTeam } from "@/actions/team";
 import { useRouter } from "next/navigation";
 
-export function EditProjectForm({
-    projectId,
+export function EditTeamForm({
+    teamId,
     name,
     description
 }: {
-    projectId: string,
+    teamId: string,
     name: string,
     description: string | null
 }) {
-    const [deleteState, deleteAction] = useFormState(deleteProject, undefined);
-    const [form, editAction] = useFormState(editProject, undefined);
+    const [deleteState, deleteAction] = useFormState(deleteTeam, undefined);
+    const [form, editAction] = useFormState(editTeam, undefined);
     const router = useRouter();
     function onSubmit() {
         router.back();
@@ -27,7 +27,7 @@ export function EditProjectForm({
 
     return (
         <form action={editAction} onSubmit={onSubmit} className="mx-auto max-w-sm w-full">
-            <h2 className="font-medium text-lg">Edit project</h2>
+            <h2 className="font-medium text-lg">Edit team</h2>
 
             <Label className="block mt-4" htmlFor="name">Name</Label>
             <Input className="mt-2" id="name" name="name" defaultValue={name} />
@@ -44,7 +44,7 @@ export function EditProjectForm({
                     {form.error.description}
                 </span>
             }
-            <input type="hidden" name="id" value={projectId} />
+            <input type="hidden" name="id" value={teamId} />
 
             <div className="grid sm:grid-cols-2 gap-2 mt-6">
                 <SubmitButton>

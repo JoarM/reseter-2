@@ -55,7 +55,7 @@ export function CreateForm() {
             </SubmitButton>
             {form?.message && <span className="text-sm font-medium text-destructive mt-2 block">{form.message}</span>}
             {form?.success && 
-                <span className="text-sm font-medium text-green-600 mt-2 block">
+                <span className="text-sm font-medium text-primary mt-2 block">
                     Success! Return to dashboard to access what you created.
                 </span>
             }

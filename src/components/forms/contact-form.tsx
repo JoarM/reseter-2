@@ -27,7 +27,7 @@ export default function ContactForm() {
             <SubmitButton className="mt-5">Send message</SubmitButton>
             {form?.message && <span className="text-sm font-medium text-destructive mt-2 block">{form.message}</span>}
             {form?.success && 
-                <span className="text-sm font-medium text-green-600 mt-2 block">
+                <span className="text-sm font-medium text-primary mt-2 block">
                     Thank you for your message we will get back to you as soon as possible
                 </span>
             }

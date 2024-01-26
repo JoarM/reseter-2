@@ -18,7 +18,7 @@ export function ProjectSidebar({
 
     return (
         <>
-            <aside className="fixed left-0 flex flex-col bottom-0 top-20 w-64 -translate-x-[200px] bg-muted border-r border-border/50 z-20 p-2 lg:translate-x-0 overflow-clip transition-transform aria-expanded:translate-x-0 group ease-in" aria-expanded={open}>
+            <div className="fixed left-0 flex flex-col bottom-0 top-20 w-64 -translate-x-[200px] bg-muted border-r border-border/50 z-20 p-2 lg:translate-x-0 overflow-clip transition-transform aria-expanded:translate-x-0 group ease-in" aria-expanded={open}>
                 <div className="flex justify-between items-center mb-4">
                     <h1 className="text-lg font-bold">{projectName}</h1>
                     <Link 
@@ -63,9 +63,9 @@ export function ProjectSidebar({
                     className="group-aria-[expanded=true]:rotate-180 transition-transform"
                     />
                 </Button>
-            </aside>
+            </div>
 
-            <div className="inset-0 z-10 bg-foreground/20 backdrop-blur-sm fixed invisible aria-[hidden=false]:visible transition-all" onClick={() => setOpen(false)} aria-hidden={!open}></div>
+            <div className="inset-0 z-10 bg-foreground/20 backdrop-blur-sm fixed invisible aria-[hidden=false]:visible transition-all lg:hidden" onClick={() => setOpen(false)} aria-hidden={!open}></div>
         </>
     )
 }

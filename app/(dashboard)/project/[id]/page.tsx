@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CostChart } from "@/components/client/cost-chart";
 import { UsageChart } from "@/components/client/usage-chart";
 import { getProject } from "@/data/projects"
-import { getPriceMultiplier } from "@/lib/utils";
+import { getPriceMultiplier, priceFormatter } from "@/lib/utils";
 import { notFound } from "next/navigation";
 
 export default async function Project({ 
@@ -18,14 +18,11 @@ export default async function Project({
         return notFound();
     }
     
-    const rawUsage = JSON.parse(project.usage as string);
+    const rawUsage = JSON.parse(project.usage as string) as number[];
     let usage: any[] = [];
     let price: any[] = [];
-    let sum = 0;
-    const priceFormatter = new Intl.NumberFormat('en-uk', {
-        style: 'currency',
-        currency: 'eur',
-    });
+    let usageSum = rawUsage.reduce((prev, next) => prev + next, 0);
+    let sum = usageSum * getPriceMultiplier(usageSum);
 
     for (let i = 0; i < rawUsage.length; i++) {
         const date = new Date();
@@ -63,7 +60,6 @@ export default async function Project({
             tooltip: longDate,
             "cost": rawUsage[i] * getPriceMultiplier(rawUsage[i]),
         });
-        sum += rawUsage[i] * getPriceMultiplier(rawUsage[i]);
     }
 
     return (

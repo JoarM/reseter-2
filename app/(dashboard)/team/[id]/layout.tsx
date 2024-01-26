@@ -1,6 +1,3 @@
-import { getTeam } from "@/data/teams";
-import { notFound } from "next/navigation";
-
 export default async function TeamLayout(props: {
     children: React.ReactNode, 
     modal: React.ReactNode,

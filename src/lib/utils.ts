@@ -50,3 +50,8 @@ export const defaultValueFormatter: ValueFormatter = (value: number) => value.to
 export function getPriceMultiplier(requests: number) {
     return 0.1904;
 }
+
+export const priceFormatter = new Intl.NumberFormat('en-uk', {
+    style: 'currency',
+    currency: 'eur',
+});

@@ -55,3 +55,7 @@
         --primary-foreground-3: 226 70% 63%;
     }
 }
+
+text {
+    color: var(--foreground) !important;
+}
