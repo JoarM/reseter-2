@@ -42,8 +42,8 @@ export function ProjectsAndTeams({
             </div>
             <noscript className="text-destructive mt-1 text-sm font-medium">You need to enable Javascript to use the search functionality</noscript>
 
-            
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 mt-6 gap-4">
+            <h2 className="text-xl font-medium mt-6">Projects</h2>
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 mt-2 gap-4">
                 {projects === undefined ? 
                 <span>No projects, create one to get started</span>
                 : 
@@ -75,7 +75,10 @@ export function ProjectsAndTeams({
                     })}
                 </>
                 }
-                
+            </div>
+             
+            <h2 className="mt-6 text-xl font-medium">Teams</h2>
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 mt-2 gap-4">
                 {teams != undefined && 
                 <>
                     {teams.map((team) => {
@@ -105,7 +108,7 @@ export function ProjectsAndTeams({
                     })}
                 </>
                 }
-            </div>
+            </div> 
         </>
     )
 }
