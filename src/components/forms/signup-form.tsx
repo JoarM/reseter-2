@@ -39,7 +39,7 @@ export default function SignupForm() {
             {form?.message && <span className="text-sm font-medium text-destructive mt-2 block">{form.message}</span>}
 
             <span className="font-medium text-sm block mt-3">
-                Have an account? <Link href="/reset-password" className="font-medium text-sm text-primary underline-offset-4 hover:underline">Login</Link>
+                Have an account? <Link href="/login" className="font-medium text-sm text-primary underline-offset-4 hover:underline">Login</Link>
             </span>
         </form>
     )
